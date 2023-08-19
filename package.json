@@ -12,6 +12,7 @@
     "@chakra-ui/vue": "^0.10.2-next.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "axios": "^1.4.0",
     "framer-motion": "^10.16.0",
     "vue": "^3.3.4"
   },
