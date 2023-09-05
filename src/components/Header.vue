@@ -5,9 +5,9 @@
     </router-link>
 
     <nav class="nav-center">
-      <a href="#" class="nav-link">Microrrelatos</a>
-      <a href="#" class="nav-link">Poesías</a>
-      <a href="#" class="nav-link">Opinión</a>
+      <router-link :to="{ name: 'Home-Microrrelatos' }" class="nav-link">Microrrelatos</router-link>
+      <router-link :to="{ name: 'Home-Poesias' }" class="nav-link">Poesías</router-link>
+      <router-link :to="{ name: 'Home-Opinion' }" class="nav-link">Opinión</router-link>
     </nav>
 
     <nav class="nav-right">

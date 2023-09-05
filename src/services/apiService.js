@@ -10,11 +10,15 @@ const apiClient = axios.create({
 })
 
 export default {
-    getTxts(page = 1) {
-        return apiClient.get(`/txt/search?sort=title&order=asc&page=${page}`).catch(error => {
-            console.error("Error fetching data: ", error)
-            throw error
-        })
+    getTxts(query) {
+        let url = `/txt/search?sort=title&order=asc&page=${query.page}`;
+        if (query.typeId) {
+            url += `&typeId=${query.typeId}`;
+        }
+        return apiClient.get(url).catch(error => {
+            console.error("Error fetching data: ", error);
+            throw error;
+        });
     },
     getTxtById(id) {
         return apiClient.get(`/txt/${id}`).catch(error => {

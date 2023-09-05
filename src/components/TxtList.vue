@@ -26,15 +26,17 @@
 </template>
 
 <script>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, toRefs, watch } from 'vue'
 import apiService from '@/services/apiService'
 import Toast from '@/components/Toast.vue'
 
 export default {
+  props: ['typeId'],
   components: {
     Toast
   },
-  setup() {
+  setup(props) {
+    const { typeId } = toRefs(props);
     const txts = ref([])
     const meta = ref({});
     const page = ref(1);
@@ -49,13 +51,24 @@ export default {
         sessionStorage.removeItem("toastMessage");
       }
       loadTxts()
-    });
+    })
+
+    watch(typeId, (newVal, oldVal) => {
+      if(newVal !== oldVal) {
+        loadTxts();
+      }
+    })
 
     const loadTxts = () => {
-      apiService.getTxts(page.value).then(response => {
-        txts.value = response.data.items
-        meta.value = response.data.meta
-      })
+      const query = typeId.value ? { page: page.value, typeId: typeId.value } : { page: page.value };
+      apiService.getTxts(query)
+          .then(response => {
+            txts.value = response.data.items
+            meta.value = response.data.meta
+          })
+          .catch(error => {
+            console.error("Error fetching texts:", error);
+          });
     }
 
     const nextPage = () => {
