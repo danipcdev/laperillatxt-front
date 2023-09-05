@@ -17,13 +17,13 @@ export default {
         }
         return apiClient.get(url).catch(error => {
             console.error("Error fetching data: ", error);
-            throw error;
+            throw error
         });
     },
     getTxtById(id) {
         return apiClient.get(`/txt/${id}`).catch(error => {
             console.error("Error fetching data: ", error)
-            throw error;
+            throw error
         })
     },
     getTypes: function() {
@@ -37,5 +37,17 @@ export default {
             console.error("Error creating txt: ", error)
             throw error
         })
-    }
+    },
+    updateTxt: function(id, data) {
+        return apiClient.patch(`/txt/${id}`, data).catch(error => {
+            console.error("Error updating txt: ", error)
+            throw error
+        })
+    },
+    deleteTxtById(id) {
+        return apiClient.delete(`/txt/${id}`).catch(error => {
+            console.error("Error fetching data: ", error)
+            throw error
+        })
+    },
 }

@@ -36,38 +36,38 @@ export default {
     Toast
   },
   setup(props) {
-    const { typeId } = toRefs(props);
+    const { typeId } = toRefs(props)
     const txts = ref([])
-    const meta = ref({});
-    const page = ref(1);
+    const meta = ref({})
+    const page = ref(1)
     const toastMessage = ref("")
     const showToast = ref(false)
 
     onMounted(() => {
-      const message = sessionStorage.getItem("toastMessage");
+      const message = sessionStorage.getItem("toastMessage")
       if (message) {
         toastMessage.value = message
         showToast.value = true
-        sessionStorage.removeItem("toastMessage");
+        sessionStorage.removeItem("toastMessage")
       }
       loadTxts()
     })
 
     watch(typeId, (newVal, oldVal) => {
       if(newVal !== oldVal) {
-        loadTxts();
+        loadTxts()
       }
     })
 
     const loadTxts = () => {
-      const query = typeId.value ? { page: page.value, typeId: typeId.value } : { page: page.value };
+      const query = typeId.value ? { page: page.value, typeId: typeId.value } : { page: page.value }
       apiService.getTxts(query)
           .then(response => {
             txts.value = response.data.items
             meta.value = response.data.meta
           })
           .catch(error => {
-            console.error("Error fetching texts:", error);
+            console.error("Error fetching texts:", error)
           });
     }
 

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import TxtList from './components/TxtList.vue'
 import TxtDetail from '@/components/TxtDetail.vue'
 import TxtCreate from '@/components/TxtCreate.vue'
+import TxtEdit from '@/components/TxtEdit.vue'
 
 
 const routes = [
@@ -38,7 +39,13 @@ const routes = [
         path: '/create',
         name: 'txt-create',
         component: TxtCreate
-    }
+    },
+    {
+        path: '/txt/:id/edit',
+        name: 'txt-edit',
+        component: TxtEdit,
+        props: true
+    },
 ]
 
 const router = createRouter({
