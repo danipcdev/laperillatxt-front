@@ -60,7 +60,7 @@ export default {
     })
 
     const loadTxts = () => {
-      const query = typeId.value ? { page: page.value, typeId: typeId.value } : { page: page.value }
+      const query = typeId.value ? { page: 1, typeId: typeId.value } : { page: page.value }
       apiService.getTxts(query)
           .then(response => {
             txts.value = response.data.items
